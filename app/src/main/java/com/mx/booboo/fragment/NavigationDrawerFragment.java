@@ -13,7 +13,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -21,6 +20,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.mx.booboo.R;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
 
 /**
@@ -31,6 +33,8 @@ public class NavigationDrawerFragment extends Fragment {
 
     private static final String STATE_SELECTED_POSITION = "selected_navigation_drawer_position";
     private static final String PREF_USER_LEARNED_DRAWER = "navigation_drawer_learned";
+    @Bind(R.id.listView)
+    ListView mListView;
 
 
     private NavigationDrawerCallbacks mCallbacks;
@@ -76,9 +80,14 @@ public class NavigationDrawerFragment extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        //获取drawer的listview。
-        mDrawerListView = (ListView) inflater.inflate(
-                R.layout.fragment_navigation_drawer, container, false);//false means attach to null.
+//        //获取drawer的listview。
+//        mDrawerListView = (ListView) inflater.inflate(
+//                R.layout.fragment_navigation_drawer, container, false);//false means attach to null.
+
+        View view = inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
+        mDrawerListView = (ListView) view.findViewById(R.id.listView);
+
+
         //listview的监听函数
         mDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -88,7 +97,8 @@ public class NavigationDrawerFragment extends Fragment {
         });
         //listview的适配器
         mDrawerListView.setAdapter(new ArrayAdapter<String>(
-                getActionBar().getThemedContext(),
+//                getActionBar().getThemedContext(),
+                getActivity(),
                 android.R.layout.simple_list_item_activated_1,
                 android.R.id.text1,
                 new String[]{
@@ -108,7 +118,8 @@ public class NavigationDrawerFragment extends Fragment {
                         "RSA"
                 }));
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
-        return mDrawerListView;
+        ButterKnife.bind(this, view);
+        return view;
     }
 
     private ActionBar getActionBar() {
@@ -238,6 +249,12 @@ public class NavigationDrawerFragment extends Fragment {
         super.onConfigurationChanged(newConfig);
         // Forward the new configuration the drawer toggle component.
         mDrawerToggle.onConfigurationChanged(newConfig);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.unbind(this);
     }
 
 
