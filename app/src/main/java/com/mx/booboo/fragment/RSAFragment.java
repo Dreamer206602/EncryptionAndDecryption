@@ -12,7 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.mx.booboo.MainActivity;
+import com.mx.booboo.activity.MainActivity;
 import com.mx.booboo.R;
 
 import butterknife.Bind;
@@ -39,11 +39,11 @@ public class RSAFragment extends Fragment {
         return rsaFragment;
     }
 
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        ((MainActivity) activity).onSectionAttached(getArguments().getInt(ARG_SECTION_NUMBER));
-    }
+//    @Override
+//    public void onAttach(Activity activity) {
+//        super.onAttach(activity);
+//        ((MainActivity) activity).onSectionAttached(getArguments().getInt(ARG_SECTION_NUMBER));
+//    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
