@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.mx.booboo.activity.DrawerActivity;
 import com.mx.booboo.activity.MainActivity;
 import com.mx.booboo.R;
 
@@ -31,20 +32,19 @@ public class RSAFragment extends Fragment {
 
     private FragmentPagerAdapter mPagerAdapter;
 
-    public static RSAFragment newInstance(int sectionNumber) {
+    public static RSAFragment newInstance() {
         RSAFragment rsaFragment = new RSAFragment();
-        Bundle bundle = new Bundle();
-        bundle.putInt(ARG_SECTION_NUMBER, sectionNumber);
-        rsaFragment.setArguments(bundle);
+//        Bundle bundle = new Bundle();
+//        bundle.putInt(ARG_SECTION_NUMBER, sectionNumber);
+//        rsaFragment.setArguments(bundle);
         return rsaFragment;
     }
 
 //    @Override
 //    public void onAttach(Activity activity) {
 //        super.onAttach(activity);
-//        ((MainActivity) activity).onSectionAttached(getArguments().getInt(ARG_SECTION_NUMBER));
+//        ((DrawerActivity) activity).onSectionAttached(getArguments().getInt(ARG_SECTION_NUMBER));
 //    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -57,7 +57,6 @@ public class RSAFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-
         mPagerAdapter=new MyPagerAdapter(getChildFragmentManager());
         mVpPager.setAdapter(mPagerAdapter);
 
