@@ -13,16 +13,9 @@ import com.mx.booboo.fragment.RSAFragment;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class MainActivity extends FragmentActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks{
+public class MainActivity extends FragmentActivity {
 
-    @Bind(R.id.container)
-    FrameLayout mContainer;
 
-    NavigationDrawerFragment mNavigationDrawerFragment;
-    @Bind(R.id.drawer_layout)
-    DrawerLayout mDrawerLayout;
-
-    private CharSequence mTitle;
 
 
     @Override
@@ -31,33 +24,12 @@ public class MainActivity extends FragmentActivity implements NavigationDrawerFr
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        mNavigationDrawerFragment= (NavigationDrawerFragment) getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
 
-        mTitle=getTitle();
-
-        mNavigationDrawerFragment.setUp(R.id.navigation_drawer,(DrawerLayout)findViewById(R.id.drawer_layout));
 
 
     }
 
-    @Override
-    public void onNavigationDrawerItemSelected(int position) {
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        switch (position){
-            case 13:
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container, RSAFragment.newInstance(position+1))
-                        .commit();
-                break;
-        }
-    }
 
-    public void onSectionAttached(int number) {
-        switch (number){
-            case 14:
-                mTitle="RSA";
-                break;
-        }
-    }
+
 }
